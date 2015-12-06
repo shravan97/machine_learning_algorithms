@@ -18,7 +18,12 @@ cout<<"Enter the number of points and the no. of clusters : ";
 cin>>n>>k;
 
 cout<<"Enter the clusters : ";
-//for(l)
+for(ll int i=0;i<n;i++)
+{	pos temp;
+	cin>>temp.x>>temp.y;
+	cin>>v.push_back(temp);
+}
+
 return 0;
 
 }
