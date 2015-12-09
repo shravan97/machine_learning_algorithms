@@ -57,7 +57,7 @@ ll cluster_index[k];
 			
 			}
 		}
-		cout<<cluster_index[i]<<'\n';
+		
 	}	
 
 return 0;
