@@ -1,0 +1,3 @@
+optimization/ipython_log.py
+*.pyc
+optimization/*.pyc
