@@ -1,6 +1,9 @@
 #Implementation of stochastic gradient descent
+
+#-- !! This algorithm needs improvement !! --
+
 import numpy as np
-def hyp(theta , x):
+def hyp(theta , x):#Hypothesis function
 	return (1/(1+np.exp(-1*(np.dot(x , theta)))))
 
 def grad(theta , x):#Gradient of cost function w.r.t transpose(Theta)*X
@@ -9,7 +12,7 @@ def grad(theta , x):#Gradient of cost function w.r.t transpose(Theta)*X
 
 def SGD(x , y , hyp , grad):
 	ts = np.shape(x)
-	theta = np.random.randn(ts[1],1)
+	theta = np.zeros([ts[1],1])
 	# print theta , '\n'
 
 	learning_rate = 0.0001
@@ -31,6 +34,9 @@ def SGD(x , y , hyp , grad):
 
 				lr_sign = learning_rate/abs(learning_rate)
 
+				if cost > cost_prev:
+					theta[j][0]+= 2*theta[j][0]
+
 				print str(cost) + ' , ' + str(cost-cost_prev)
 
 				if cost[0][0]>40.0:
@@ -49,7 +55,7 @@ def SGD(x , y , hyp , grad):
 				# if cost>=cost_prev:
 				# 	learning_rate = -1.0*learning_rate
 
-				if 	abs(cost[0][0]-cost_prev[0][0])<=0.00001 :
+				if 	abs(cost[0][0]-cost_prev[0][0])<=0.00001:
 					flag=False
 					break
 				cost_prev = cost	
