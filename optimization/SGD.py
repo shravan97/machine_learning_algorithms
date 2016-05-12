@@ -28,14 +28,15 @@ def SGD(x , y , hyp , grad):
 		for i in xrange(0,ts[0]):
 			for j in range(0,ts[1]):
 				# theta[j][0] -= learning_rate*grad(theta , np.array([x[i]]))*(float)(1.0/float(ts[0]))*(hyp(theta , np.array([x[i]])) - y[i])*(-x[i][j])
-				theta[j][0] -= float(learning_rate)*(float)(1.0/float(ts[0]))*float(hyp(theta , np.array([x[i]])) - y[i])*float(-x[i][j])
+				val = float(learning_rate)*(float)(1.0/float(ts[0]))*float(hyp(theta , np.array([x[i]])) - y[i])*float(-x[i][j])
+				theta[j][0] -=val
 				k = np.dot(x,theta) - y
 				cost = (float(1.0/float(2.0*float(ts[0]))))*np.dot(np.transpose(k) , k)	
 
 				lr_sign = learning_rate/abs(learning_rate)
 
 				if cost > cost_prev:
-					theta[j][0]+= 2*theta[j][0]
+					theta[j][0]+= 2*val
 
 				print str(cost) + ' , ' + str(cost-cost_prev)
 
@@ -55,7 +56,7 @@ def SGD(x , y , hyp , grad):
 				# if cost>=cost_prev:
 				# 	learning_rate = -1.0*learning_rate
 
-				if 	abs(cost[0][0]-cost_prev[0][0])<=0.00001:
+				if 	float(abs(float(cost[0][0])-float(cost_prev[0][0])))<=0.0000001:
 					flag=False
 					break
 				cost_prev = cost	
